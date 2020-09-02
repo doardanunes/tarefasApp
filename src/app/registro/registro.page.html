@@ -4,6 +4,7 @@
     <img src="assets/etec2.png" alt="Etec">
   </div>
 
+  <form [formGroup]= "formLogin">
   <ion-item class="ion-text-center ion-button-light">
     <ion-label>
       NOVO USUÁRIO
@@ -18,43 +19,91 @@
 
   <ion-item lines="none">
     <ion-label position="stacked">Nome</ion-label>
-    <ion-input type="email" placeholder="Digite seu nome "></ion-input>
+    <ion-input formControlName="nome" type="text" placeholder="Digite seu nome"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.nome">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('nome').hasError(erro.tipo) && (formLogin.get('nome').dirty || formLogin.get('nome').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
 
   <ion-item lines="none">
     <ion-label position="stacked">CPF</ion-label>
-    <ion-input type="te" placeholder="Digite seu CPF"></ion-input>
+    <ion-input [brmasker]="{person: true}" maxLength="14" formControlName="cpf" type="text" placeholder="Digite seu CPF"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.cpf">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('cpf').hasError(erro.tipo) && (formLogin.get('cpf').dirty || formLogin.get('cpf').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
 
   <ion-item lines="none">
     <ion-label position="stacked">Data de nascimento</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Selecione" cancelText="Cancelar" doneText="Ok"></ion-datetime>
+    <ion-datetime  formControlName="DataDeNascimento" type="date" displayFormat="DD/MM/YYYY" placeholder="Selecione" cancelText="Cancelar" doneText="Ok"></ion-datetime>
+    <ng-container *ngFor="let erro of mensagens_validacao.DataDeNascimento">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('DataDeNascimento').hasError(erro.tipo) && (formLogin.get('DataDeNascimento').dirty || formLogin.get('DataDeNascimento').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
 
   <ion-item lines="none">
     <ion-label position="stacked">Gênero</ion-label>
-    <ion-select placeholder="Selecione" cancelText="Cancelar">
+    <ion-select formControlName="genero" placeholder="Selecione" cancelText="Cancelar">
       <ion-select-option value="F">Feminino</ion-select-option>
       <ion-select-option value="M">Masculino</ion-select-option>
       <ion-select-option value="O">Outro</ion-select-option>
     </ion-select>
+    <ng-container *ngFor="let erro of mensagens_validacao.genero">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('genero').hasError(erro.tipo) && (formLogin.get('genero').dirty || formLogin.get('genero').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
 
   <ion-item lines="none">
     <ion-label position="stacked">Celular</ion-label>
-    <ion-input type="text" placeholder="Digite seu celula"></ion-input>
+    <ion-input [brmasker]="{phone: true}" formControlName="celular" type="text" placeholder="Digite seu celular"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.celular">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('celular').hasError(erro.tipo) && (formLogin.get('celular').dirty || formLogin.get('celular').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
   <ion-item lines="none">
     <ion-label position="stacked"> E-mail</ion-label>
-    <ion-input type="email" placeholder="Digite seu E-mail"></ion-input>
+    <ion-input formControlName="email" type="email" placeholder="Digite seu E-mail"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.email">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('email').hasError(erro.tipo) && (formLogin.get('email').dirty || formLogin.get('email').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
   <ion-item lines="none">
     <ion-label position="stacked">Senha</ion-label>
-    <ion-input type="password" placeholder="Escolha uma senha"></ion-input>
+    <ion-input formControlName="senha" type="password" placeholder="Escolha uma senha"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.senha">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('senha').hasError(erro.tipo) && (formLogin.get('senha').dirty || formLogin.get('senha').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
   <ion-item lines="none">
     <ion-label position="stacked">Confirme</ion-label>
-    <ion-input type="password" placeholder="Confirme sua senha"></ion-input>
+    <ion-input formControlName="confirmarSenha" type="password" placeholder="Confirme sua senha"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.confirmarSenha">
+      <span class="msg-erro"
+        *ngIf="formLogin.get('confirmarSenha').hasError(erro.tipo) && (formLogin.get('confirmarSenha').dirty || formLogin.get('confirmarSenha').touched)">
+          {{erro.mensagem}}
+      </span>
+    </ng-container>
   </ion-item>
 
   <ion-item button class="ion-button-light ion-text-center">
@@ -63,5 +112,5 @@
   <ion-button expand="full" fill="clear" color="light" routerLink="/login">
     VOLTAR 
   </ion-button>
-
+</form>
 </ion-content>
