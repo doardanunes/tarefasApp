@@ -64,4 +64,25 @@ export class UsuariosService {
   public async removerUsuarioLogado(){
     return await this.armazenamentoService.removerDados('usuarioLogado');
   }
+
+  public async alterar(usuario: Usuario) {
+    if(usuario){
+      return false;
+    }
+
+    await this.buscarTodos();
+
+    const index = this.listarUsuarios.findIndex(usuarioArmazenado => {
+      return usuarioArmazenado.email == usuario.email;
+    });
+
+    const usuarioTemporario = this.listarUsuarios[index] as Usuario;
+
+    usuario.senha = usuarioTemporario.senha;
+
+    this.listarUsuarios[index] = usuario;
+
+    return await this.armazenamentoService.salvarDados('usuarios', this.listarUsuarios);
+
+  }
 }

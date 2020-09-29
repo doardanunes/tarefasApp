@@ -4,7 +4,6 @@
     <img src="assets/etec2.png" alt="Etec">
   </div>
 
-  <form [formGroup]= "formLogin">
   <ion-item class="ion-text-center ion-button-light">
     <ion-label>
       NOVO USUÁRIO
@@ -17,6 +16,7 @@
     </ion-label>
   </ion-item-divider>
 
+  <form [formGroup]= "formLogin">
   <ion-item lines="none">
     <ion-label position="stacked">Nome</ion-label>
     <ion-input formControlName="nome" type="text" placeholder="Digite seu nome"></ion-input>
